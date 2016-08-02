@@ -253,7 +253,7 @@ export default StyleSheet.create({
         "paddingLeft": 0,
         "marginLeft": 0.5,
         "border": "1px dashed #ddd",
-        "background": "#fff url('/images/plus.png') no-repeat 120px center",
+        "background": "#fff url('/images/plus.png') no-repeat 100px center",
         "color": "#999",
         "textAlign": "center",
         "verticalAlign": "middle"
