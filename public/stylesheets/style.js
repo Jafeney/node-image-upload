@@ -68,7 +68,26 @@ export default StyleSheet.create({
         "fontSize": 18,
         "background": "#49aaed",
         "fontFamily": "'kaiti','microsoft yahei'",
-        "color": "#fff"
+        "color": "#fff",
+        "position": "relative"
+    },
+    "main h1 button": {
+        "position": "absolute",
+        "fontSize": 16,
+        "lineHeight": 40,
+        "border": 0,
+        "outline": 0,
+        "background": "#49aaed",
+        "color": "#fff",
+        "height": 40,
+        "top": 0,
+        "cursor": "pointer"
+    },
+    "main h1 button:first-child": {
+        "left": 10
+    },
+    "main h1 button:last-child": {
+        "right": 10
     },
     "body part": {
         "width": "50%",
@@ -101,30 +120,6 @@ export default StyleSheet.create({
         "borderBottom": "1px solid #ededed",
         "color": "#4e4e4e",
         "textShadow": "0px 1px 0px white"
-    },
-    "footer": {
-        "lineHeight": 1.4,
-        "paddingTop": 15,
-        "paddingRight": 0,
-        "paddingBottom": 15,
-        "paddingLeft": 0,
-        "borderTop": "1px solid #486aaa",
-        "fontFamily": "'Lucida Grande',Verdana, Sans-Serif",
-        "textAlign": "center",
-        "textShadow": "1px 1px #cad5eb"
-    },
-    "footer:before": {
-        "display": "block",
-        "height": 1,
-        "content": "''",
-        "backgroundColor": "#909BAF",
-        "color": "#aaa",
-        "overflow": "hidden",
-        "position": "relative",
-        "top": -15
-    },
-    "footer img": {
-        "marginBottom": -3
     },
     "show": {
         "paddingBottom": 20
@@ -165,7 +160,8 @@ export default StyleSheet.create({
         "marginBottom": 0,
         "marginLeft": 0,
         "whiteSpace": "pre-wrap",
-        "wordWrap": "break-word"
+        "wordWrap": "break-word",
+        "textAlign": "left"
     },
     "ad": {
         "width": 468,
@@ -322,5 +318,99 @@ export default StyleSheet.create({
         "paddingBottom": 3,
         "paddingLeft": 10,
         "marginRight": 6
+    },
+    "auth-form": {
+        "width": 450,
+        "marginTop": 0,
+        "marginRight": "auto",
+        "marginBottom": 0,
+        "marginLeft": "auto",
+        "paddingTop": 50,
+        "textAlign": "center"
+    },
+    "auth-form span": {
+        "fontSize": 14,
+        "marginRight": 5
+    },
+    "auth-form input": {
+        "border": "1px solid #ccc",
+        "paddingTop": 3,
+        "paddingRight": 10,
+        "paddingBottom": 3,
+        "paddingLeft": 10,
+        "display": "inline-block",
+        "color": "#888"
+    },
+    "auth-form button": {
+        "border": 0,
+        "outline": 0,
+        "color": "#fff",
+        "backgroundColor": "#49aaed",
+        "cursor": "pointer",
+        "fontSize": 12,
+        "paddingTop": 4,
+        "paddingRight": 10,
+        "paddingBottom": 4,
+        "paddingLeft": 10
+    },
+    "show-imgs": {
+        "fontSize": 0
+    },
+    "show-imgs li": {
+        "display": "inline-block",
+        "width": 240,
+        "verticalAlign": "bottom",
+        "border": "5px solid #fff",
+        "boxShadow": "0 3px 3px #999",
+        "marginRight": 10,
+        "marginTop": 10,
+        "cursor": "pointer",
+        "transition": "all .3s ease",
+        "WebkitTransition": "all .3 ease"
+    },
+    "show-imgs li:hover": {
+        "border": "5px solid #49aaed"
+    },
+    "show-imgs img": {
+        "width": "100%",
+        "height": "auto"
+    },
+    "animated": {
+        "WebkitAnimationDuration": "1s",
+        "animationDuration": "1s",
+        "WebkitAnimationFillMode": "both",
+        "animationFillMode": "both"
+    },
+    "animated-fast": {
+        "WebkitAnimationDuration": "0.5s",
+        "animationDuration": "0.5s",
+        "WebkitAnimationFillMode": "both",
+        "animationFillMode": "both"
+    },
+    "animated-zing": {
+        "WebkitAnimationDuration": "0.3s",
+        "animationDuration": "0.3s",
+        "WebkitAnimationFillMode": "both",
+        "animationFillMode": "both"
+    },
+    "fadeInLeft": {
+        "WebkitAnimationName": "fadeInLeft",
+        "animationName": "fadeInLeft"
+    },
+    "fadeInRight": {
+        "WebkitAnimationName": "fadeInRight",
+        "animationName": "fadeInRight"
+    },
+    "slideInLeft": {
+        "WebkitAnimationName": "slideInLeft",
+        "animationName": "slideInLeft"
+    },
+    "slideInRight": {
+        "WebkitAnimationName": "slideInRight",
+        "animationName": "slideInRight"
+    },
+    "scaleIn": {
+        "WebkitAnimationName": "scaleIn",
+        "animationName": "scaleIn"
     }
 });

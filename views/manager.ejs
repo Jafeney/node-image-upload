@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jafeney-图片管理中心</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <div id="main">
+            <h1>
+                <button id="btn-return">博客主页</button>
+                <span>Jafeney 静态图片管理中心</span>
+                <button id="btn-upload">上传</button>
+            </h1>
+            <div id="body" class="light animated-fast scaleIn">
+                <h3>静态图片管理</h3>
+          	    <div id="content" class="show">
+                    <ul class="show-imgs">
+                        <% arrs.forEach(function (v, k){ %>
+                            <li><a href="<%= v %>" target="_blank" ><img src="<%= v %>" /></a></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="/javascripts/jQuery.min.js"></script>
+        <script>
+            $(function(){
+                $('#btn-return').on('click', function(){location.href = "http://jafeney.com"})
+                $('#btn-upload').on('click', function(){location.href = "/upload"})
+
+                var _key = window.localStorage.auth;
+                $.ajax({
+                    type:'post',
+                    url: '/auth',
+                    data: { key: _key },
+                    dataType: 'json',
+                    success: function(res) {
+                        if (!res.success) {
+                            location.href = '/';
+                        }
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>

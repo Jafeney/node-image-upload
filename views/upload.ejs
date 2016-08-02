@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jafeney-图片管理中心</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <div id="main">
+            <h1>
+                <button id="btn-return">返回</button>
+                <span>Jafeney 静态图片管理中心</span>
+            </h1>
+            <div id="body" class="light animated-fast slideInLeft">
+                <h3>静态图片上传</h3>
+          	    <div id="content" class="show">
+                    <div class="demo">
+                  	    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                            <div class="upload_box">
+                                <div class="upload_main">
+                                    <div class="upload_choose">
+                                        <input id="fileImage" type="file" size="30" name="fileSelect" multiple />
+                                        <span id="fileDragArea" class="upload_drag_area">或者将图片拖到此处</span>
+                                    </div>
+                                    <div id="preview" class="upload_preview"></div>
+                                </div>
+                                <div class="upload_submit">
+                                    <button type="button" id="fileSubmit" class="upload_submit_btn">确认上传图片</button>
+                                </div>
+                                <div id="uploadInf" class="upload_inf"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/javascripts/jQuery.min.js"></script>
+        <script src="/javascripts/zxxFile.js"></script>
+        <script>
+            var params = {
+                fileInput: $("#fileImage").get(0),
+                dragDrop: $("#fileDragArea").get(0),
+                upButton: $("#fileSubmit").get(0),
+                url: $("#uploadForm").attr("action"),
+                filter: function(files) {
+                    var arrFiles = [];
+                    for (var i = 0, file; file = files[i]; i++) {
+                        if (file.type.indexOf("image") == 0) {
+                            if (file.size >= 1024000) {
+                                alert('您这张"'+ file.name +'"图片大小过大，应小于1M');
+                            } else {
+                                arrFiles.push(file);
+                            }
+                        } else {
+                            alert('文件"' + file.name + '"不是图片。');
+                        }
+                    }
+                    return arrFiles;
+                },
+                onSelect: function(files) {
+                    var html = '', i = 0;
+                    $("#preview").html('<div class="upload_loading"></div>');
+                    var funAppendImage = function() {
+                        file = files[i];
+                        if (file) {
+                            var reader = new FileReader()
+                            reader.onload = function(e) {
+                                html = html + '<div id="uploadList_'+ i +'" class="upload_append_list"><p><strong>' + file.name + '</strong>'+
+                                    '<a href="javascript:" class="upload_delete" title="删除" data-index="'+ i +'">删除</a><br />' +
+                                    '<img id="uploadImage_' + i + '" src="' + e.target.result + '" class="upload_image" /></p>'+
+                                    '<span id="uploadProgress_' + i + '" class="upload_progress"></span>' +
+                                '</div>';
+
+                                i++;
+                                funAppendImage();
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            $("#preview").html(html);
+                            if (html) {
+                                //删除方法
+                                $(".upload_delete").click(function() {
+                                    ZXXFILE.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+                                    return false;
+                                });
+                                //提交按钮显示
+                                $("#fileSubmit").show();
+                            } else {
+                                //提交按钮隐藏
+                                $("#fileSubmit").hide();
+                            }
+                        }
+                    };
+                    funAppendImage();
+                },
+                onDelete: function(file) {
+                    $("#uploadList_" + file.index).fadeOut();
+                },
+                onDragOver: function() {
+                    $(this).addClass("upload_drag_hover");
+                },
+                onDragLeave: function() {
+                    $(this).removeClass("upload_drag_hover");
+                },
+                onProgress: function(file, loaded, total) {
+                    var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
+                    eleProgress.show().html(percent);
+                },
+                onSuccess: function(file, response) {
+                    response = JSON.parse(response);
+                    $("#uploadInf").append("<p>上传成功，图片地址是：<input type='text' class='upload_url' value='http://" + response.relPath + "'/> <a href='http://" + response.relPath + "' target='_blank'>查看</a></p>");
+                },
+                onFailure: function(file) {
+                    $("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");
+                    $("#uploadImage_" + file.index).css("opacity", 0.2);
+                },
+                onComplete: function() {
+                    //提交按钮隐藏
+                    $("#fileSubmit").hide();
+                    //file控件value置空
+                    $("#fileImage").val("");
+                    $("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
+                }
+            };
+            ZXXFILE = $.extend(ZXXFILE, params);
+            ZXXFILE.init();
+
+            $('#btn-return').on('click', function(){location.href = '/manager'});
+
+            var _key = window.localStorage.auth;
+            $.ajax({
+                type:'post',
+                url: '/auth',
+                data: { key: _key },
+                dataType: 'json',
+                success: function(res) {
+                    if (!res.success) {
+                        location.href = '/';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
