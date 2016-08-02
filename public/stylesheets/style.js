@@ -253,7 +253,7 @@ export default StyleSheet.create({
         "paddingLeft": 0,
         "marginLeft": 0.5,
         "border": "1px dashed #ddd",
-        "background": "#fff url(http://rescdn.qqmail.com/zh_CN/htmledition/images/func/dragfile07bf38.gif) no-repeat 20px center",
+        "background": "#fff url('/images/plus.png') no-repeat 120px center",
         "color": "#999",
         "textAlign": "center",
         "verticalAlign": "middle"
@@ -300,7 +300,7 @@ export default StyleSheet.create({
     },
     "upload_loading": {
         "height": 250,
-        "background": "url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center"
+        "background": "url(http://baaistatic.b0.upaiyun.com/Static/WebApp/Img/upload_animate.gif) no-repeat center"
     },
     "upload_progress": {
         "display": "none",
