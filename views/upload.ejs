@@ -107,7 +107,7 @@
                 },
                 onSuccess: function(file, response) {
                     response = JSON.parse(response);
-                    $("#uploadInf").append("<p>上传成功，图片地址是：<input type='text' class='upload_url' value='http://" + response.relPath + "'/> <a href='http://" + response.relPath + "' target='_blank'>查看</a></p>");
+                    $("#uploadInf").append("<p>上传成功，图片地址是：<input type='text' class='upload_url' value='" + response.relPath + "'/> <a href='" + response.relPath + "' target='_blank'>查看</a></p>");
                 },
                 onFailure: function(file) {
                     $("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");

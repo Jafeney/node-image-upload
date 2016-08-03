@@ -62,11 +62,12 @@ pre{
 
 .show-imgs {
     font-size: 0;
+    padding-left: 10px;
 }
 
 .show-imgs li {
     display: inline-block;
-    width: 240px;
+    /*width: 240px;*/
     vertical-align: bottom;
     border: 5px solid #fff;
     box-shadow: 0 3px 3px #999;

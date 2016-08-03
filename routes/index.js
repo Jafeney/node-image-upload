@@ -2,8 +2,6 @@ var express = require('express');
 var app = require('../app');
 var router = express.Router();
 var multiparty = require('multiparty');
-var formidable= require('formidable');
-var util = require('util');
 var fs = require('fs');
 var key = 0, timeout = 0;  //授权key和有效期
 var auth = function(n) {
@@ -51,7 +49,7 @@ router.get('/manager', function(req, res, next) {
 		}
 		for (var e; list.length && (e = list.shift());) {
             relPath = 'http://' + req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + e;
-			arrs.push(relPath)
+			arrs.push(relPath);
 		}
         res.render('manager', { arrs: arrs.reverse() })
 	});
@@ -89,7 +87,7 @@ router.post('/upload', function(req, res, next) {
             var _timeSymbol = new Date().toLocaleTimeString().split(':').join('');
             var dstPath = './public/file/' + _dateSymbol + _timeSymbol + '_' + _img.originalFilename;
             var _port = process.env.PORT || '9999';
-            relPath = req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + _dateSymbol + _timeSymbol + '_' + _img.originalFilename;
+            relPath = 'http://' + req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + _dateSymbol + _timeSymbol + '_' + _img.originalFilename;
 
             // 重命名为原始文件名
             fs.rename(uploadedPath, dstPath, function(err) {

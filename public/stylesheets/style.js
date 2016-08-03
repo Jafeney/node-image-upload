@@ -354,11 +354,11 @@ export default StyleSheet.create({
         "paddingLeft": 10
     },
     "show-imgs": {
-        "fontSize": 0
+        "fontSize": 0,
+        "paddingLeft": 10
     },
     "show-imgs li": {
         "display": "inline-block",
-        "width": 240,
         "verticalAlign": "bottom",
         "border": "5px solid #fff",
         "boxShadow": "0 3px 3px #999",
