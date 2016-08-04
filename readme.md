@@ -18,11 +18,12 @@
     brew install graphicsmagick --width-webp   // 支持webp格式的图片  
 ```
 
-'gm' 具体用法参见 [https://www.npmjs.com/package/gm](https://www.npmjs.com/package/gm)
+`gm` 具体用法参见 [https://www.npmjs.com/package/gm](https://www.npmjs.com/package/gm)
 
 ## 欢迎fork
-在线演示地址： [http://jafeney.com:9999](http://jafeney.com:9999)
+项目在线演示地址： [http://jafeney.com:9999](http://jafeney.com:9999)
 
 ---
 
-欢迎关注我的 [个人博客Jafeney](http://jafeney.com)  
+欢迎关注我的 [个人博客Jafeney](http://jafeney.com)
+or link me at 692270687@qq.com  
