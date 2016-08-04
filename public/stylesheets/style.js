@@ -359,6 +359,8 @@ export default StyleSheet.create({
     },
     "show-imgs li": {
         "display": "inline-block",
+        "position": "relative",
+        "maxWidth": 250,
         "verticalAlign": "bottom",
         "border": "5px solid #fff",
         "boxShadow": "0 3px 3px #999",
@@ -371,9 +373,26 @@ export default StyleSheet.create({
     "show-imgs li:hover": {
         "border": "5px solid #49aaed"
     },
+    "show-imgs li:hover img-title": {
+        "display": "block"
+    },
     "show-imgs img": {
         "width": "100%",
         "height": "auto"
+    },
+    "img-title": {
+        "display": "none",
+        "position": "absolute",
+        "zIndex": 99,
+        "left": 0,
+        "top": 0,
+        "paddingTop": 5,
+        "paddingRight": 10,
+        "paddingBottom": 5,
+        "paddingLeft": 10,
+        "backgroundColor": "#000",
+        "color": "#fff",
+        "fontSize": 12
     },
     "animated": {
         "WebkitAnimationDuration": "1s",

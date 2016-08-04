@@ -2,6 +2,7 @@ var express = require('express');
 var app = require('../app');
 var router = express.Router();
 var multiparty = require('multiparty');
+var gm = require('gm');
 var fs = require('fs');
 var key = 0, timeout = 0;  //授权key和有效期
 var auth = function(n) {
@@ -21,7 +22,7 @@ var auth = function(n) {
 router.get('/', function(req, res, next) {
   key = Math.random()*100000|0;
   timeout = new Date().getHours(); // 1小时登录失效
-  res.render('index', { key: key });
+  res.render('auth', { key: key });
 });
 
 router.post('/auth', function(req, res, next) {
@@ -49,7 +50,8 @@ router.get('/manager', function(req, res, next) {
 		}
 		for (var e; list.length && (e = list.shift());) {
             relPath = 'http://' + req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + e;
-			arrs.push(relPath);
+            relName = e;
+			arrs.push([relPath,relName]);
 		}
         res.render('manager', { arrs: arrs.reverse() })
 	});
@@ -65,8 +67,19 @@ router.get('/upload', function(req, res, next) {
     res.render('upload');
 })
 
+//allow custom header and CORS
+router.options('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X_FILENAME, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+
 /*使用multiparty处理上传的图片*/
 router.post('/upload', function(req, res, next) {
+
     // 生成multiparty对象，并配置上传目标路径
     var form = new multiparty.Form({uploadDir: './public/file/'});
 
@@ -81,25 +94,59 @@ router.post('/upload', function(req, res, next) {
         } else {
             console.log('Parse Files: ' + filesTmp);
             var _img = files.filedata[0];
-
             var uploadedPath = _img.path;
             var _dateSymbol = new Date().toLocaleDateString().split('-').join('');
             var _timeSymbol = new Date().toLocaleTimeString().split(':').join('');
-            var dstPath = './public/file/' + _dateSymbol + _timeSymbol + '_' + _img.originalFilename;
-            var _port = process.env.PORT || '9999';
-            relPath = 'http://' + req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + _dateSymbol + _timeSymbol + '_' + _img.originalFilename;
 
-            // 重命名为原始文件名
-            fs.rename(uploadedPath, dstPath, function(err) {
-                if (err) {
-                    console.log('Rename Error: ' + err);
-                } else {
-                    console.log('rename ok!');
-                }
-            });
+            // 获取图片的正式尺寸
+            gm(uploadedPath)
+            .size(function(err, size) {
+                var dstPath = './public/file/' + _dateSymbol + _timeSymbol + '_' + size.width + 'x' + size.height + '.' + _img.originalFilename.split('.')[1];
 
+                var _port = process.env.PORT || '9999';
+                relPath = 'http://' + req.hostname + ( _port!==80 ? ':' + _port : '' ) + '/file/' + _dateSymbol + _timeSymbol + '_' + size.width + 'x' + size.height + '.' + _img.originalFilename.split('.')[1];
+
+                // 重命名
+                fs.rename(uploadedPath, dstPath, function(err) {
+                    if (err) {
+                        console.log('Rename Error: ' + err);
+                    } else {
+                        console.log('rename ok!');
+                        // 对上传的图片进行压缩
+                        var _path = dstPath.split('.');
+                        gm(dstPath)
+                        .noProfile()
+                        .resizeExact(800)
+                        .write('.'+_path[1] + '@800.' + _path[2], function (err) {
+                            if (!err) console.log('done');
+                            else console.log(err);
+                        });
+                        gm(dstPath)
+                        .resizeExact(400)
+                        .write('.'+_path[1] + '@400.' + _path[2], function (err) {
+                            if (!err) console.log('done');
+                            else console.log(err);
+                        });
+                        gm(dstPath)
+                        .resizeExact(200)
+                        .write('.'+_path[1] + '@200.' + _path[2], function (err) {
+                            if (!err) console.log('done');
+                            else console.log(err);
+                        });
+                    }
+                });
+
+                res.header('Access-Control-Allow-Origin', '*');
+                res.header('Access-Control-Allow-Headers', 'X_FILENAME, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+                res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+                res.header("X-Powered-By",' 3.2.1')
+                res.header("Content-Type", "application/json;charset=utf-8");
+                res.json({
+                    res:JSON.parse(filesTmp),
+                    relPath: relPath,
+                })
+            })
         }
-        res.json({res:JSON.parse(filesTmp),relPath: relPath})
     });
 });
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jafeney-图片管理中心</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <div id="main">
+            <h1>
+                <span>Jafeney 静态图片管理中心</span>
+            </h1>
+            <div id="body" class="light animated-fast scaleIn">
+                <h3>知道你要干嘛，不过需要对你的身份进行授权</h3>
+          	    <div id="content" class="show">
+                    <div class="auth-form">
+                        <div style="width:450px;height:410px;margin: 0 auto;">
+                            <pre>阅读下面代码：</pre>
+                            <pre>function dblLinear(n) {</pre>
+                		  	<pre>    var ai = 0, bi = 0, eq = 0;</pre>
+                		  	<pre>    var sequence = [1];</pre>
+                		  	<pre>    while (ai + bi < n + eq) {</pre>
+                		    <pre>        var y = 2 * sequence[ai] + 1;</pre>
+                		    <pre>        var z = 3 * sequence[bi] + 1;</pre>
+                		    <pre>        if (y < z) { sequence.push(y); ai++; }</pre>
+                		    <pre>        else if (y > z) { sequence.push(z); bi++; }</pre>
+                		    <pre>        else { sequence.push(y); ai++; bi++; eq++; }</pre>
+                		  	<pre>    }</pre>
+                		    <pre>    return sequence.pop();</pre>
+                		    <pre>}</pre>
+                            <pre>dblLinear(<%= key %>)  // 结果即授权码</pre>
+                        </div>
+                        <div style="text-align:left;padding-left:10px;">
+                            <span>输入授权码</span>
+                            <input id="auth-code" type="number" />
+                            <button id="auth-submit">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/javascripts/jQuery.min.js"></script>
+        <script>
+            $(function(){
+                $('#auth-submit').on('click', function() {
+                    var _val = $('#auth-code').val();
+                    if (_val) {
+                        $.ajax({
+                            type: 'post',
+                            url: '/auth',
+                            dataType: 'json',
+                            data: {key:_val},
+                            success: function(res) {
+                                if (res.success) {
+                                    window.localStorage.auth = res.key;
+                                    location.href = '/manager';
+                                } else {
+                                    alert('授权失败！请重试')
+                                }
+                            }
+                        })
+                    }
+                })
+
+            });
+        </script>
+    </body>
+</html>

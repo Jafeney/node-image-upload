@@ -16,7 +16,10 @@
           	    <div id="content" class="show">
                     <ul class="show-imgs">
                         <% arrs.forEach(function (v, k){ %>
-                            <li><a href="<%= v %>" target="_blank" ><img src="<%= v %>" /></a></li>
+                            <li>
+                                <a href="<%= v[0] %>" target="_blank" ><img src="<%= v[0] %>" /></a>
+                                <span class="img-title"><%= v[1] %></span>
+                            </li>
                         <% }) %>
                     </ul>
                 </div>
