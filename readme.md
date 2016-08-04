@@ -20,6 +20,55 @@
 
 `gm` 具体用法参见 [https://www.npmjs.com/package/gm](https://www.npmjs.com/package/gm)
 
+## 关于跨域支持
+本项目后端采用的是express，那么如何使改上传接口支持跨域调用呢？
+
+### 针对ES5编写的Ajax请求
+```
+    router.post('/upload', function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'X_FILENAME, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+        res.header("X-Powered-By",' 3.2.1')
+        res.header("Content-Type", "application/json;charset=utf-8");
+
+        //... 具体操作
+
+        res.send({success: true, res: result})
+
+    });
+
+```
+
+### 针对ES6编写的Ajax请求
+> ES6对`XMLHttpRequest`请求做了些许处理，就是无论是 `GET`、`POST`还是`PUT`请求，在它之前会先发一个对应的 `OPTIONS`类型的请求。所以服务端要对这个类型的请求也要做处理: 
+
+```
+    //allow custom header and CORS
+    router.options('*', function (req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'X_FILENAME, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+        res.header("X-Powered-By",' 3.2.1')
+        res.header("Content-Type", "application/json;charset=utf-8");
+        next();
+    });
+
+    router.post('*', function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'X_FILENAME, Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+        res.header("X-Powered-By",' 3.2.1')
+        res.header("Content-Type", "application/json;charset=utf-8");
+
+        //... 具体操作
+
+        res.send({success: true, res: result})
+    });
+
+```
+
+
 ## 欢迎fork
 项目在线演示地址： [http://jafeney.com:9999](http://jafeney.com:9999)
 
