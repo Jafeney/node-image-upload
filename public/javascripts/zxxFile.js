@@ -25,6 +25,7 @@ var ZXXFILE = {
 		this[e.type === "dragover"? "onDragOver": "onDragLeave"].call(e.target);
 		return this;
 	},
+	
 	//获取选择文件，file控件或拖放
 	funGetFiles: function(e) {
 		// 取消鼠标经过样式
