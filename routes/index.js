@@ -96,7 +96,7 @@ router.post('/upload', function(req, res, next) {
             var _img = files.filedata[0];
             var uploadedPath = _img.path;
             var _dateSymbol = new Date().toLocaleDateString().split('-').join('');
-            var _timeSymbol = new Date().toLocaleTimeString().split(':').join('');
+            var _timeSymbol = new Date().getTime().toString();
 
             // 获取图片的正式尺寸
             gm(uploadedPath)
