@@ -14,7 +14,7 @@ module.exports = {
         vendor: ['react', 'react-dom', 'redux']
     },
     output: {
-        path: path.join(__dirname, '/build'),
+        path: path.join(__dirname, '/public/build'),
         publicPath: "/assets/",
         filename: 'bundle.js'
     },

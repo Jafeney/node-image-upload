@@ -1,12 +1,9 @@
-# 基于node和react的图片管理工具
+# 基于node的图片管理工具
 > @author Jafeney
 > @dateTime 2016-08-03
 
 ## 架构介绍
-本项目是典型的基于node服务的React单页应用实例，大前端必会的技术之一。
-
-前端涉及的技术有 `webpack`前端自动化构建 + `react-redux`数据交互 + `react-router`路由管理 ＋ `css3Animate`动画效果。
-后端涉及的技术有 `express`web服务构建 ＋ `multiparty`图片上传处理 + `gm`图形图片处理   
+本项目是典型的基于node服务的前端图片上传和管理工具。
 
 ## BUG说明
 注意：`node`的图形操作`gm`模块前使用必须 先安装 `imagemagick` 和 `graphicsmagick`
@@ -41,7 +38,7 @@
 ```
 
 ### 针对ES6编写的Ajax请求
-> ES6对`XMLHttpRequest`请求做了些许处理，就是无论是 `GET`、`POST`还是`PUT`请求，在它之前会先发一个对应的 `OPTIONS`类型的请求。所以服务端要对这个类型的请求也要做处理: 
+> ES6对`XMLHttpRequest`请求做了些许处理，就是无论是 `GET`、`POST`还是`PUT`请求，在它之前会先发一个对应的 `OPTIONS`类型的请求。所以服务端要对这个类型的请求也要做处理:
 
 ```
     //allow custom header and CORS

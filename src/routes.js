@@ -1,37 +1,22 @@
 /**
- * @desc store配置
+ * @desc 项目路由配置
  * @author Jafeney
  * @dateTime 2016-08-06
  **/
 
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
-import * as reducers from './reducers/'
-import { routerReducer, routerMiddleware } from 'react-router-redux'
-import { pendingTasksReducer } from 'react-redux-spinner'
+import React from 'react'
+import { Route } from 'react-router'
 
-export default function configureStore(history, initialState) {
+import Auth from './containers/Auth'
+import Manage from './containers/Manage/'
+import Upload from './containers/Upload/'
 
-    const reducer = combineReducers({
-        ...reducers,
-        routing: routerReducer,
-        pendingTasks: pendingTasksReducer,
-    })
+const routes = (
+    <Route>
+        <Route path="auth" component={Auth} />                      // 登录
+        <Route path="manage" component={Manage} />                  // 登录
+        <Route path="upload" component={Upload} />                  // 登录
+    </Route>
+)
 
-    const loggerMiddleware = createLogger()
-
-    const store = createStore(
-        reducer,
-        initialState,
-        compose(
-            applyMiddleware(
-                thunkMiddleware,
-                loggerMiddleware,  // 日志中间件
-                routerMiddleware(history)
-            )
-        )
-    )
-
-    return store
-}
+export default routes
