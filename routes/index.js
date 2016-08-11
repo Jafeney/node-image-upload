@@ -100,6 +100,17 @@ router.post('/upload', function(req, res, next) {
     });
 });
 
+/*删除图片*/
+router.post('/delete', function(req, res, next) {
+    var _path = './public/file/' + req.body.delName;
+    try {
+        fs.unlinkSync(_path)
+        res.json({success: true})
+    } catch(e) {
+        res.json({success: false})
+    }
+});
+
 function processImg(req, res, files) {
     var filesTmp = JSON.stringify(files, null, 2);
     return new Promise(function(resolve, reject) {

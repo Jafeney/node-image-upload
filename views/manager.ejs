@@ -19,6 +19,7 @@
                             <li>
                                 <a href="<%= v[0] %>" target="_blank" ><img src="<%= v[0] %>" /></a>
                                 <span class="img-title"><%= v[1] %></span>
+                                <button class="img-delete animated-fast fadeInLeft">删除</button>
                             </li>
                         <% }) %>
                     </ul>
@@ -28,8 +29,8 @@
         <script src="/javascripts/jQuery.min.js"></script>
         <script>
             $(function(){
-                $('#btn-return').on('click', function(){location.href = "http://jafeney.com"})
-                $('#btn-upload').on('click', function(){location.href = "/upload"})
+                $('#btn-return').on('click', function() {location.href = "http://jafeney.com"})
+                $('#btn-upload').on('click', function() {location.href = "/upload"})
 
                 var _key = window.localStorage.auth;
                 $.ajax({
@@ -43,6 +44,24 @@
                         }
                     }
                 });
+
+                $('.img-delete').on('click', function() {
+                    var self = $(this);
+                    var _name = self.siblings('.img-title').text();
+                    $.ajax({
+                        type:'post',
+                        url: '/delete',
+                        data: { delName: _name },
+                        dataType: 'json',
+                        success: function(res) {
+                            if (res.success) {
+                                self.parent().remove()
+                            } else {
+                                console.log('Delete Image Fail!')
+                            }
+                        }
+                    });
+                })
             })
         </script>
     </body>

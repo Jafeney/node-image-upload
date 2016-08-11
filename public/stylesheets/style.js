@@ -376,6 +376,9 @@ export default StyleSheet.create({
     "show-imgs li:hover img-title": {
         "display": "block"
     },
+    "show-imgs li:hover img-delete": {
+        "display": "block"
+    },
     "show-imgs img": {
         "width": "100%",
         "height": "auto"
@@ -392,7 +395,28 @@ export default StyleSheet.create({
         "paddingLeft": 10,
         "backgroundColor": "#000",
         "color": "#fff",
-        "fontSize": 12
+        "fontSize": 12,
+        "transition": "all .5s ease",
+        "WebkitTransition": "all .5s ease"
+    },
+    "img-delete": {
+        "width": 50,
+        "height": 25,
+        "textAlign": "center",
+        "borderRadius": 3,
+        "color": "#fff",
+        "background": "#000",
+        "position": "absolute",
+        "right": 0,
+        "bottom": 2,
+        "fontSize": 14,
+        "border": 0,
+        "outline": 0,
+        "display": "none",
+        "cursor": "pointer"
+    },
+    "img-delete:hover": {
+        "background": "#333"
     },
     "animated": {
         "WebkitAnimationDuration": "1s",

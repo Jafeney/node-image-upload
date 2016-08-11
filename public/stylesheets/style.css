@@ -87,6 +87,10 @@ pre{
     display: block;
 }
 
+.show-imgs li:hover .img-delete {
+    display: block;
+}
+
 .show-imgs img {
     width: 100%;
     height: auto;
@@ -102,6 +106,30 @@ pre{
     background-color: #000;
     color: #fff;
     font-size: 12px;
+
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+}
+
+.img-delete {
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    border-radius: 3px;
+    color: #fff;
+    background: #000;
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.img-delete:hover {
+    background: #333;
 }
 
 /*--------------------------------------------------------------------Animate-----------------------------------------------------------------------------------*/
