@@ -26,6 +26,10 @@ router.get('/', function(req, res, next) {
   res.render('auth', { key: key });
 });
 
+router.get('/m', function(req, res, next) {
+    res.render('index')
+});
+
 router.post('/auth', function(req, res, next) {
     // 1小时内有效
     if (new Date().getHours() === timeout) {
@@ -151,7 +155,7 @@ function reSizeImage(paths, path, size) {
         gm(path)
         .noProfile()
         .resizeExact(size)
-        .write('.' + paths[1] + '@' + size + '00.' + paths[2], function (err) {
+        .write('.' + paths[1] + '@' + size + '.' + paths[2], function (err) {
             if (!err) {
                 console.log('resize as ' + size + ' ok!')
                 resolve()

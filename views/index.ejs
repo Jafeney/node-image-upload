@@ -2,9 +2,37 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="Jafeney静态图片管理" />
+        <meta name="keywords" content="Jafeney, 思诚^_^, 大前端, React, ReactNative" />
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="email=no" name="format-detection" />
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
         <title>图片管理中心</title>
+        <link rel="shortcut icon" type="image/x-icon" href="http://jafeney.com/favicon.ico?v=0.4.5.2" media="screen" />
+        <link href="http://jafeney.com/favicon.ico?v=0.4.5.2" rel="apple-touch-icon">
         <link rel="stylesheet" href="/stylesheets/loader.css">
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <script type="text/javascript">
+        ! function(a) {
+            function b() {
+                a.rem = f.getBoundingClientRect().width / 16, f.style.fontSize = a.rem + "px"
+            }
+            var c, d = a.navigator.appVersion.match(/iphone/gi) ? a.devicePixelRatio : 1,
+                e = 1 / d,
+                f = document.documentElement,
+                g = document.createElement("meta");
+            if (a.dpr = d, a.addEventListener("resize", function() {
+                    clearTimeout(c), c = setTimeout(b, 300)
+                }, !1), a.addEventListener("pageshow", function(a) {
+                    a.persisted && (clearTimeout(c), c = setTimeout(b, 300))
+                }, !1), f.setAttribute("data-dpr", d), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + e + ", maximum-scale=" + e + ", minimum-scale=" + e + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g);
+            else {
+                var h = document.createElement("div");
+                h.appendChild(g), document.write(h.innerHTML)
+            }
+            b()
+        }(window);
+        </script>
     </head>
     <body>
         <div id="root">

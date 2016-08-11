@@ -13,9 +13,9 @@ import Upload from './containers/Upload/'
 
 const routes = (
     <Route>
-        <Route path="auth" component={Auth} />                      // 登录
-        <Route path="manage" component={Manage} />                  // 登录
-        <Route path="upload" component={Upload} />                  // 登录
+        <Route path="auth" component={Auth} />                      // 授权
+        <Route path="manage" component={Manage} />                  // 管理
+        <Route path="upload" component={Upload} />                  // 上传
     </Route>
 )
 

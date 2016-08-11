@@ -418,6 +418,102 @@ export default StyleSheet.create({
     "img-delete:hover": {
         "background": "#333"
     },
+    "mask": {
+        "position": "fixed",
+        "zIndex": 99999,
+        "backgroundColor": "rgba(0, 0, 0, 0.8)",
+        "top": 0,
+        "left": 0,
+        "width": "100%",
+        "height": "100%"
+    },
+    "modal-box": {
+        "width": 560,
+        "maxHeight": 180,
+        "position": "absolute",
+        "marginTop": "auto",
+        "marginRight": "auto",
+        "marginBottom": "auto",
+        "marginLeft": "auto",
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0,
+        "backgroundColor": "#fff",
+        "borderRadius": 5,
+        "textAlign": "center"
+    },
+    "modal-box h2": {
+        "fontSize": 16,
+        "paddingTop": 5,
+        "paddingRight": 5,
+        "paddingBottom": 5,
+        "paddingLeft": 5,
+        "color": "#333"
+    },
+    "[data-dpr=\"2\"] modal-box h2": {
+        "fontSize": 32
+    },
+    "[data-dpr=\"25\"] modal-box h2": {
+        "fontSize": 40
+    },
+    "[data-dpr=\"275\"] modal-box h2": {
+        "fontSize": 44
+    },
+    "[data-dpr=\"3\"] modal-box h2": {
+        "fontSize": 48
+    },
+    "[data-dpr=\"4\"] modal-box h2": {
+        "fontSize": 64
+    },
+    "modal-box p": {
+        "fontSize": 14,
+        "paddingTop": 5,
+        "paddingRight": 30,
+        "paddingBottom": 5,
+        "paddingLeft": 30,
+        "color": "#666",
+        "textAlign": "left"
+    },
+    "[data-dpr=\"2\"] modal-box p": {
+        "fontSize": 28
+    },
+    "[data-dpr=\"25\"] modal-box p": {
+        "fontSize": 35
+    },
+    "[data-dpr=\"275\"] modal-box p": {
+        "fontSize": 39
+    },
+    "[data-dpr=\"3\"] modal-box p": {
+        "fontSize": 42
+    },
+    "[data-dpr=\"4\"] modal-box p": {
+        "fontSize": 56
+    },
+    "modal-box mask-btns": {
+        "position": "absolute",
+        "width": "100%",
+        "bottom": 0,
+        "textAlign": "center",
+        "height": 50,
+        "lineHeight": 50,
+        "borderTop": "1px solid #cecece",
+        "color": "#666",
+        "display": "flex",
+        "cursor": "pointer",
+        "WebkitFlexDirection": "row",
+        "MsFlexDirection": "row",
+        "flexDirection": "row"
+    },
+    "modal-box mask-btns span": {
+        "WebkitFlex": 1,
+        "MsFlex": 1,
+        "flex": 1,
+        "boxSizing": "border-box"
+    },
+    "modal-box mask-btns span:first-child": {
+        "borderRight": "1px solid #cecece"
+    },
     "animated": {
         "WebkitAnimationDuration": "1s",
         "animationDuration": "1s",

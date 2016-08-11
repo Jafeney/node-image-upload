@@ -27,6 +27,7 @@
             </div>
         </div>
         <script src="/javascripts/jQuery.min.js"></script>
+        <script src="/javascripts/Modal.js"></script>
         <script>
             $(function(){
                 $('#btn-return').on('click', function() {location.href = "http://jafeney.com"})
@@ -48,20 +49,26 @@
                 $('.img-delete').on('click', function() {
                     var self = $(this);
                     var _name = self.siblings('.img-title').text();
-                    $.ajax({
-                        type:'post',
-                        url: '/delete',
-                        data: { delName: _name },
-                        dataType: 'json',
-                        success: function(res) {
-                            if (res.success) {
-                                self.parent().remove()
-                            } else {
-                                console.log('Delete Image Fail!')
-                            }
+                    Modal.confirm({
+                        title: '提示',
+                        content: '您确定要删除图片 ' + _name + ' 吗？',
+                        callback: function() {
+                            $.ajax({
+                                type:'post',
+                                url: '/delete',
+                                data: { delName: _name },
+                                dataType: 'json',
+                                success: function(res) {
+                                    if (res.success) {
+                                        self.parent().remove()
+                                    } else {
+                                        console.log('Delete Image Fail!')
+                                    }
+                                }
+                            });
                         }
                     });
-                })
+                });
             })
         </script>
     </body>

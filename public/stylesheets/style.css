@@ -132,6 +132,97 @@ pre{
     background: #333;
 }
 
+/*--------------------------------------------------------------------Modal-----------------------------------------------------------------------------------*/
+.mask {
+  position: fixed;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal-box {
+  width: 560px;
+  max-height: 180px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+.modal-box h2 {
+  font-size: 16px;
+  padding: 5px;
+  color: #333;
+}
+[data-dpr="2"] .modal-box h2 {
+  font-size: 32px;
+}
+[data-dpr="2.5"] .modal-box h2 {
+  font-size: 40px;
+}
+[data-dpr="2.75"] .modal-box h2 {
+  font-size: 44px;
+}
+[data-dpr="3"] .modal-box h2 {
+  font-size: 48px;
+}
+[data-dpr="4"] .modal-box h2 {
+  font-size: 64px;
+}
+.modal-box p {
+  font-size: 14px;
+  padding: 5px 30px;
+  color: #666;
+  text-align: left;
+}
+[data-dpr="2"] .modal-box p {
+  font-size: 28px;
+}
+[data-dpr="2.5"] .modal-box p {
+  font-size: 35px;
+}
+[data-dpr="2.75"] .modal-box p {
+  font-size: 39px;
+}
+[data-dpr="3"] .modal-box p {
+  font-size: 42px;
+}
+[data-dpr="4"] .modal-box p {
+  font-size: 56px;
+}
+.modal-box .mask-btns {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  border-top: 1px solid #cecece;
+  color: #666;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.modal-box .mask-btns span {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  box-sizing: border-box;
+}
+.modal-box .mask-btns span:first-child {
+  border-right: 1px solid #cecece;
+}
+
 /*--------------------------------------------------------------------Animate-----------------------------------------------------------------------------------*/
 .animated {
   -webkit-animation-duration: 1s;
