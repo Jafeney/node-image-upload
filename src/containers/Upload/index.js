@@ -19,7 +19,7 @@ class pUpload extends Component {
         return (
             <div>
                 <NavBar leftIcon={'angle-left'} rightIcon={'cloud-upload'} />
-                <div><Upload /></div>
+                <div><Upload uri={'http://localhost:9999/upload'} /></div>
             </div>
         )
     }
