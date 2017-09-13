@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "build": "webpack --progress -w",
+    "server": "node ./bin/www",
+    "start": "npm run server"
   },
   "dependencies": {
     "base-64": "^0.1.0",
